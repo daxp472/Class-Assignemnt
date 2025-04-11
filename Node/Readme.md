@@ -1,34 +1,63 @@
-# Node.js Server Tasks
+# Express Server with Modular Routing and JWT Authentication
 
-This project contains 10 different Express server implementations demonstrating various Node.js concepts.
+This project sets up an Express server with modular routing, role-based access control, user authentication, and token-based validation using JWT.
 
-## Setup
+## Features
 
-1. Install dependencies:
+* Modular Routing: Routes are separated into different files for better maintainability.
+* JWT Authentication: Secure access to routes with JWT tokens.
+* Role-based Access Control: Restrict access based on user roles (admin, user).
+* CRUD Operations: Implemented basic CRUD functionality for managing users.
+
+## Setup Instructions
+
+### Clone the Repository
+
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
+
+### Install Dependencies
+
 ```bash
 npm install
 ```
 
-2. Create a .env file with required secrets:
-```
-ACCESS_TOKEN_SECRET=your_access_token_secret_here
-SECRET_KEY=your_secret_key_here
+### Environment Variables
+
+Set the following environment variables in your `.env` file:
+
+```ini
+SECRET_KEY=<your-secret-key>
+ACCESS_TOKEN_SECRET=<your-access-token-secret>
 ```
 
-3. Start all servers:
+### Run the Server
+
 ```bash
 npm start
 ```
 
-## Available Servers
+The server will start on port 3000. You can modify the port in the `server.js` file if needed.
 
-1. Server1 (Port 3001) - Basic Express Server
-2. Server2 (Port 3002) - GET All Users
-3. Server3 (Port 3003) - POST New User
-4. Server4 (Port 3004) - GET User by ID
-5. Server5 (Port 3005) - PUT Update User
-6. Server6 (Port 3006) - PATCH Update User
-7. Server7 (Port 3007) - DELETE User
-8. Server8 (Port 3008) - JWT Authentication
-9. Server9 (Port 3009) - Protected Routes
-10. Server10 (Port 3010) - Role-Based Authorization
+## Key Files
+
+* `server.js`: Main entry point that initializes the Express app and loads routes.
+* `task/server1.js`, `task/server2.js`, ...: Modular route handlers (e.g., user authentication, role-based routes, etc.).
+* `authMiddleware.js`: Middleware for authenticating JWT tokens and checking user roles.
+
+## Example Routes
+
+* `POST /login`: User login to receive a JWT token.
+* `GET /admin-only`: Protected route, accessible only by users with the admin role.
+* `GET /user-only`: Protected route, accessible only by users with the user role.
+* `POST /users`: Create a new user.
+* `PUT /users/:id`: Update user information.
+* `PATCH /users/:id`: Partially update user information.
+* `DELETE /users/:id`: Delete a user.
+
+## Notes
+
+* All routes require a valid JWT token in the Authorization header.
+* Role-based routes (`/admin-only`, `/user-only`) require a valid role in the JWT token.
