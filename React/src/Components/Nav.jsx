@@ -121,6 +121,22 @@ function Nav() {
             >
                 Live Search
             </Link>
+            <Link
+                to="/api-fetch"
+                style={{
+                    textDecoration: 'none',
+                    color: active === 'api-fetch' ? '#fff' : '#ccc',
+                    padding: '1rem',
+                    borderRadius: '10px',
+                    backgroundColor: active === 'api-fetch' ? '#444' : 'transparent',
+                    transition: 'all 0.3s ease',
+                    flex: 1,
+                    textAlign: 'center',
+                }}
+                onClick={() => handleNavClick('api-fetch')}
+            >
+                API Fetch
+            </Link>
 
         </nav>
     );

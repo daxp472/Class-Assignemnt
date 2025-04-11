@@ -8,7 +8,7 @@ import TodoList from './Tasks/Todo';
 import ShowHide from './Tasks/ShowHide';
 import CharacterCount from './Tasks/CharacterCount';
 import Search from './Tasks/Search';
-
+import API from './Tasks/API';
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route path="/show-hide" element={<ShowHide />} />
         <Route path="/character-count" element={<CharacterCount />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/api-fetch" element={<API />} />
       </Routes>
     </Router>
   );
