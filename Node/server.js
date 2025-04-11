@@ -1,26 +1,27 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { promises as fs } from 'fs';
+import express from 'express';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const app = express();
+const port = 3000;
 
-// Function to dynamically import all server files
-async function startAllServers() {
-    const taskDir = join(__dirname, 'task');
-    const files = await fs.readdir(taskDir);
-    
-    for (const file of files) {
-        if (file.startsWith('server') && file.endsWith('.js')) {
-            try {
-                const serverModule = await import(`./task/${file}`);
-                console.log(`Started ${file}`);
-            } catch (error) {
-                console.error(`Error starting ${file}:`, error);
-            }
-        }
-    }
+app.use(express.json());
+
+const tasks = [
+  import('./task/server1.js'),
+  import('./task/server2.js'),
+  import('./task/server3.js'),
+  import('./task/server4.js'),
+  import('./task/server5.js'),
+  import('./task/server6.js'),
+  import('./task/server7.js'),
+  import('./task/server8.js'),
+  import('./task/server9.js'),
+  import('./task/server10.js')
+];
+
+for await (const task of tasks) {
+  task.default(app); 
 }
 
-// Start all servers
-startAllServers().catch(console.error);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});

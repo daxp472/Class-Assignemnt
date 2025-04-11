@@ -1,18 +1,14 @@
-const express = require('express');
-const app = express();
-const port = 3003;
+import express from 'express';
 
-let users = [];
+const users = [];
 
-app.use(express.json());
+export default function(app) {
+    app.use(express.json());
 
-app.post('/users', (req, res) => {
-    const { name, email } = req.body;
-    const user = { name, email };
-    users.push(user);
-    res.send(`User added successfully: ${name} - ${email}`);
-});
-
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
+    app.post('/users', (req, res) => {
+        const { name, email } = req.body;
+        const user = { name, email };
+        users.push(user);
+        res.send(`User added successfully: ${name} - ${email}`);
+    });
+}
