@@ -1,20 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Nav from './Nav';
-import Home from './Tasks/Home';       
-import Counter from './Tasks/Counter';  
-import Todo from './Tasks/Todo';        
-import ShowHide from './Tasks/ShowHide'; 
+import Nav from './Components/Nav';
+import Counter from './Tasks/Counter';
+import TodoList from './Tasks/Todo';
+import ShowHide from './Tasks/ShowHide';
+import CharacterCount from './Tasks/CharacterCount';
 
 function App() {
   return (
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<h2>Welcome to the React App!</h2>} />
         <Route path="/counter" element={<Counter />} />
-        <Route path="/todo" element={<Todo />} />
+        <Route path="/todo" element={<TodoList />} />
         <Route path="/show-hide" element={<ShowHide />} />
+        <Route path="/character-count" element={<CharacterCount />} />
       </Routes>
     </Router>
   );
