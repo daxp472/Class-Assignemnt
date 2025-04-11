@@ -1,10 +1,26 @@
-// import server1 from 'task/server1.js';
-// import server2 from 'task/server2.js';
-// import server3 from 'task/server3.js'; 
-// import server4 from 'task/server4.js';  
-// import server5 from 'task/server5.js';
-// import server6 from 'task/server6.js';
-// import server7 from 'task/server7.js';
-// import server8 from 'task/server8.js';
-// import server9 from 'task/server9.js';
-// import server10 from 'task/server10.js';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { promises as fs } from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Function to dynamically import all server files
+async function startAllServers() {
+    const taskDir = join(__dirname, 'task');
+    const files = await fs.readdir(taskDir);
+    
+    for (const file of files) {
+        if (file.startsWith('server') && file.endsWith('.js')) {
+            try {
+                const serverModule = await import(`./task/${file}`);
+                console.log(`Started ${file}`);
+            } catch (error) {
+                console.error(`Error starting ${file}:`, error);
+            }
+        }
+    }
+}
+
+// Start all servers
+startAllServers().catch(console.error);
