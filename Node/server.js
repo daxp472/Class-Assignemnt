@@ -1,23 +1,10 @@
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const app = express();
-
-// Fix for __dirname in ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-app.get('/students', (req, res) => {
-  res.sendFile(path.join(__dirname, 'students.json'));
-});
-
-app.listen(5000, () => console.log('Server is running on port 5000'));
+// import server1 from 'task/server1.js';
+// import server2 from 'task/server2.js';
+// import server3 from 'task/server3.js'; 
+// import server4 from 'task/server4.js';  
+// import server5 from 'task/server5.js';
+// import server6 from 'task/server6.js';
+// import server7 from 'task/server7.js';
+// import server8 from 'task/server8.js';
+// import server9 from 'task/server9.js';
+// import server10 from 'task/server10.js';
